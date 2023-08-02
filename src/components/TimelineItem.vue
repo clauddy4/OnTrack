@@ -1,6 +1,6 @@
 <script setup>
 import BaseSelect from '@/components/ui/BaseSelect.vue'
-import {isTimelineItemValid, validateSelectOptions} from '@/helpers/validators'
+import { isTimelineItemValid, validateSelectOptions } from '@/helpers/validators'
 import { ref } from 'vue'
 import TimelineHour from '@/components/TimelineHour.vue'
 
