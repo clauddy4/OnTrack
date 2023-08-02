@@ -40,20 +40,20 @@ export function isButtonTypeValid(type) {
   return BUTTON_TYPES.includes(type)
 }
 
+export function isUndefined(value) {
+  return value === undefined
+}
+
 function isNotEmptyString(value) {
   return isString(value) && value.length > 0
 }
 
 function isOptionValid({ value, label }) {
-  return isNumber(value) && isString(label)
+  return isNumber(value) && isNotEmptyString(label)
 }
 
 function isNull(value) {
   return value === null
-}
-
-function isUndefined(value) {
-  return value === undefined
 }
 
 function isNumber(value) {
