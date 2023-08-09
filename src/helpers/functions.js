@@ -1,4 +1,11 @@
-import { HOURS_IN_DAY, MIDNIGHT_HOUR, SECONDS_IN_HOUR, PAGE_TIMELINE } from '@/helpers/constants'
+import {
+  HOURS_IN_DAY,
+  MIDNIGHT_HOUR,
+  SECONDS_IN_HOUR,
+  PAGE_TIMELINE,
+  SECONDS_IN_MINUTE,
+  MINUTES_IN_HOUR
+} from '@/helpers/constants'
 import { isNull, isPageValid } from '@/helpers/validators'
 
 export function normalizePageHash() {
@@ -44,4 +51,20 @@ export function generateActivitySelectOptions(activities) {
 
 export function normalizeSelectValue(value) {
   return isNull(value) || isNaN(value) ? value : +value
+}
+
+export function generatePeriodSelectOptions(periodsInMinutes) {
+  return periodsInMinutes.map((period) => ({
+    value: period * SECONDS_IN_MINUTE,
+    label: generatePeriodLabel(period)
+  }))
+}
+
+function generatePeriodLabel(period) {
+  const hours = Math.floor(period / MINUTES_IN_HOUR)
+    .toString()
+    .padStart(2, '0')
+  const minutes = (period % MINUTES_IN_HOUR).toString().padStart(2, '0')
+
+  return `${hours}:${minutes}`
 }

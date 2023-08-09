@@ -29,6 +29,7 @@ export function isNumberOrNull(value) {
 }
 
 export function isActivityValid({ id, name, secondsToComplete }) {
+  if (isNull(id)) return true
   return [isNotEmptyString(name), isNotEmptyString(id), isNumber(secondsToComplete)].every(Boolean)
 }
 
@@ -52,16 +53,16 @@ export function isSelectValueValid(value) {
   return isNotEmptyString(value) || isNumberOrNull(value)
 }
 
+export function isNumber(value) {
+  return typeof value === 'number'
+}
+
 function isNotEmptyString(value) {
   return isString(value) && value.length > 0
 }
 
 function isOptionValid({ value, label }) {
   return isNumber(value) || (isNotEmptyString(value) && isNotEmptyString(label))
-}
-
-function isNumber(value) {
-  return typeof value === 'number'
 }
 
 function isString(value) {
