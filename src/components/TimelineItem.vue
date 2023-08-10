@@ -8,6 +8,7 @@ import {
 } from '@/helpers/validators'
 import TimelineHour from '@/components/TimelineHour.vue'
 import { NULLABLE_ACTIVITY } from '@/helpers/constants'
+import TimelineStopwatch from '@/components/TimelineStopwatch.vue'
 
 const props = defineProps({
   timelineItem: {
@@ -49,5 +50,6 @@ function findActivityById(id) {
       :selected="timelineItem.activityId"
       placeholder="Rest"
     />
+    <TimelineStopwatch :seconds="timelineItem.activitySeconds" />
   </li>
 </template>
