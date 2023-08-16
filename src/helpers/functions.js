@@ -25,6 +25,15 @@ export function generateActivities() {
   }))
 }
 
+export function getTotalActivitySeconds(activity, timelineItems) {
+  return timelineItems
+    .filter((timelineItem) => timelineItem.activityId === activity.id)
+    .reduce(
+      (totalSeconds, timelineItem) => Math.round(timelineItem.activitySeconds + totalSeconds),
+      0
+    )
+}
+
 export function generateTimelineItems(activities) {
   return [...Array(HOURS_IN_DAY).keys()].map((hour) => ({
     hour,
