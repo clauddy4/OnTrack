@@ -5,13 +5,15 @@ import TheTimeline from '@/components/pages/TheTimeline.vue'
 import TheActivities from '@/components/pages/TheActivities.vue'
 import TheProgress from '@/components/pages/TheProgress.vue'
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from '@/helpers/constants'
-import { computed, ref } from 'vue'
+import {computed, provide, ref} from 'vue'
 import {
   generateTimelineItems,
   normalizePageHash,
   generateActivitySelectOptions,
   generateActivities
 } from '@/helpers/functions'
+
+  provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
 
 const currentPage = ref(normalizePageHash())
 const activities = ref(generateActivities())
@@ -47,6 +49,10 @@ function createActivity(activity) {
 
 function setTimelineItemActivity(timelineItem, activity) {
   timelineItem.activityId = activity.id
+}
+
+function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
+  timelineItem.activitySeconds += activitySeconds
 }
 
 function setActivitySecondsToComplete(activity, secondsToComplete) {

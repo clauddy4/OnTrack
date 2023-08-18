@@ -8,28 +8,26 @@ import {
   MILLISECONDS_IN_SECOND
 } from '@/helpers/constants'
 import BaseButton from '@/components/ui/BaseButton.vue'
-import { isHourValid, isNumber } from '@/helpers/validators'
-import { ref } from 'vue'
+import {isNumber, isTimelineItemValid} from '@/helpers/validators'
+import {inject, ref} from 'vue'
 
 const props = defineProps({
-  seconds: {
-    type: Number,
-    default: 0,
-    validator: isNumber
-  },
-  hour: {
-    type: Number,
+  timelineItem: {
+    type: Object,
     required: true,
-    validator: isHourValid
+    validator: isTimelineItemValid
   }
 })
 
-const seconds = ref(props.seconds)
+const updateTimelineItemActivitySeconds = inject('updateTimelineItemActivitySeconds')
+
+const seconds = ref(props.timelineItem.activitySeconds)
 const isRunning = ref(false)
-const isStartButtonDisabled = props.hour !== new Date().getHours()
+const isStartButtonDisabled = props.timelineItem.hour !== new Date().getHours()
 
 function start() {
   isRunning.value = setInterval(() => {
+    updateTimelineItemActivitySeconds(props.timelineItem, 1)
     seconds.value++
   }, MILLISECONDS_IN_SECOND)
 }
@@ -41,6 +39,7 @@ function stop() {
 
 function reset() {
   stop()
+  updateTimelineItemActivitySeconds(props.timelineItem, -seconds.value)
   seconds.value = 0
 }
 </script>
