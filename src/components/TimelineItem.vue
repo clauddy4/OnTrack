@@ -55,8 +55,6 @@ function findActivityById(id) {
       :selected="timelineItem.activityId"
       placeholder="Rest"
     />
-    <TimelineStopwatch
-        :timeline-item="timelineItem"
-    />
+    <TimelineStopwatch :timeline-item="timelineItem" />
   </li>
 </template>

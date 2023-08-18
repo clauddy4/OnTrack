@@ -8,8 +8,8 @@ import {
   MILLISECONDS_IN_SECOND
 } from '@/helpers/constants'
 import BaseButton from '@/components/ui/BaseButton.vue'
-import {isNumber, isTimelineItemValid} from '@/helpers/validators'
-import {inject, ref} from 'vue'
+import { isNumber, isTimelineItemValid } from '@/helpers/validators'
+import { inject, ref } from 'vue'
 
 const props = defineProps({
   timelineItem: {

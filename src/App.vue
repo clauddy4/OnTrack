@@ -5,7 +5,7 @@ import TheTimeline from '@/components/pages/TheTimeline.vue'
 import TheActivities from '@/components/pages/TheActivities.vue'
 import TheProgress from '@/components/pages/TheProgress.vue'
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from '@/helpers/constants'
-import {computed, provide, ref} from 'vue'
+import { computed, provide, ref } from 'vue'
 import {
   generateTimelineItems,
   normalizePageHash,
@@ -13,7 +13,7 @@ import {
   generateActivities
 } from '@/helpers/functions'
 
-  provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
+provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
 
 const currentPage = ref(normalizePageHash())
 const activities = ref(generateActivities())
