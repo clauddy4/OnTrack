@@ -10,10 +10,9 @@ import {
   generateTimelineItems,
   normalizePageHash,
   generateActivitySelectOptions,
-  generateActivities
+  generateActivities,
+  generatePeriodSelectOptions
 } from '@/helpers/functions'
-
-provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
 
 const currentPage = ref(normalizePageHash())
 const activities = ref(generateActivities())
@@ -58,6 +57,12 @@ function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
 function setActivitySecondsToComplete(activity, secondsToComplete) {
   activity.secondsToComplete = secondsToComplete
 }
+
+provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
+provide('periodSelectOptions', generatePeriodSelectOptions())
+provide('activitySelectOptions', activitySelectOptions.value)
+provide('timelineItems', timelineItems.value)
+provide('activities', activities.value)
 </script>
 
 <template>
@@ -67,8 +72,6 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
     <TheTimeline
       v-show="currentPage === PAGE_TIMELINE"
       :timeline-items="timelineItems"
-      :activities="activities"
-      :activity-select-options="activitySelectOptions"
       :current-page="currentPage"
       @set-timeline-item-activity="setTimelineItemActivity"
       ref="timeline"
@@ -76,7 +79,6 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
     <TheActivities
       v-show="currentPage === PAGE_ACTIVITIES"
       :activities="activities"
-      :timeline-items="timelineItems"
       @delete-activity="deleteActivity"
       @create-activity="createActivity"
       @set-activity-seconds-to-complete="setActivitySecondsToComplete"
