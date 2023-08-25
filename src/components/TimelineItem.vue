@@ -1,8 +1,7 @@
 <script setup>
 import BaseSelect from '@/components/ui/BaseSelect.vue'
-import { isActivityValid, isHourValid, isTimelineItemValid } from '@/helpers/validators'
+import { isHourValid, isTimelineItemValid } from '@/helpers/validators'
 import TimelineHour from '@/components/TimelineHour.vue'
-import { NULLABLE_ACTIVITY } from '@/helpers/constants'
 import TimelineStopwatch from '@/components/TimelineStopwatch.vue'
 import { inject } from 'vue'
 
@@ -15,19 +14,10 @@ defineProps({
 })
 
 const emit = defineEmits({
-  selectActivity: isActivityValid,
   scrollToHour: isHourValid
 })
 
-function selectActivity(id) {
-  emit('selectActivity', findActivityById(id))
-}
-
-function findActivityById(id) {
-  return activities.find((activity) => activity.id === id) || NULLABLE_ACTIVITY
-}
-
-const activities = inject('activities')
+const setTimelineItemActivity = inject('setTimelineItemActivity')
 const activitySelectOptions = inject('activitySelectOptions')
 </script>
 
@@ -38,7 +28,7 @@ const activitySelectOptions = inject('activitySelectOptions')
       @click.prevent="emit('scrollToHour', timelineItem.hour)"
     />
     <BaseSelect
-      @select="selectActivity($event)"
+      @select="setTimelineItemActivity(timelineItem, $event)"
       :options="activitySelectOptions"
       :selected="timelineItem.activityId"
       placeholder="Rest"

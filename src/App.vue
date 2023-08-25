@@ -46,8 +46,8 @@ function createActivity(activity) {
   activities.value.push(activity)
 }
 
-function setTimelineItemActivity(timelineItem, activity) {
-  timelineItem.activityId = activity.id
+function setTimelineItemActivity(timelineItem, activityId) {
+  timelineItem.activityId = activityId
 }
 
 function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
@@ -59,10 +59,13 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
 }
 
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
+provide('setActivitySecondsToComplete', setActivitySecondsToComplete)
+provide('setTimelineItemActivity', setTimelineItemActivity)
+provide('createActivity', createActivity)
+provide('deleteActivity', deleteActivity)
 provide('periodSelectOptions', generatePeriodSelectOptions())
 provide('activitySelectOptions', activitySelectOptions.value)
 provide('timelineItems', timelineItems.value)
-provide('activities', activities.value)
 </script>
 
 <template>
@@ -73,16 +76,9 @@ provide('activities', activities.value)
       v-show="currentPage === PAGE_TIMELINE"
       :timeline-items="timelineItems"
       :current-page="currentPage"
-      @set-timeline-item-activity="setTimelineItemActivity"
       ref="timeline"
     />
-    <TheActivities
-      v-show="currentPage === PAGE_ACTIVITIES"
-      :activities="activities"
-      @delete-activity="deleteActivity"
-      @create-activity="createActivity"
-      @set-activity-seconds-to-complete="setActivitySecondsToComplete"
-    />
+    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities" />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
 
