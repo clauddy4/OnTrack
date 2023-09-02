@@ -8,15 +8,6 @@ import {
 } from '@/helpers/constants'
 import { isNull, isPageValid } from '@/helpers/validators'
 
-export function normalizePageHash() {
-  const hash = window.location.hash.slice(1)
-
-  if (isPageValid(hash)) return hash
-
-  window.location.hash = PAGE_TIMELINE
-  return PAGE_TIMELINE
-}
-
 export function generateActivities() {
   return ['Coding', 'Reading', 'Training'].map((name, hours) => ({
     id: id(),
