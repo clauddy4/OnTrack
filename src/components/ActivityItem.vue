@@ -6,6 +6,7 @@ import { isActivityValid } from '@/helpers/validators'
 import { BUTTON_TYPE_DANGER } from '@/helpers/constants'
 import ActivitySecondsToComplete from '@/components/ActivitySecondsToComplete.vue'
 import { inject } from 'vue'
+import { periodSelectOptionsKey, deleteActivityKey, setActivitySecondsToCompleteKey } from '@/keys'
 
 defineProps({
   activity: {
@@ -15,9 +16,9 @@ defineProps({
   }
 })
 
-const periodSelectOptions = inject('periodSelectOptions')
-const deleteActivity = inject('deleteActivity')
-const setActivitySecondsToComplete = inject('setActivitySecondsToComplete')
+const periodSelectOptions = inject(periodSelectOptionsKey)
+const deleteActivity = inject(deleteActivityKey)
+const setActivitySecondsToComplete = inject(setActivitySecondsToCompleteKey)
 </script>
 
 <template>

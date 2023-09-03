@@ -8,8 +8,9 @@ import {
   MILLISECONDS_IN_SECOND
 } from '@/helpers/constants'
 import BaseButton from '@/components/ui/BaseButton.vue'
-import { isNumber, isTimelineItemValid } from '@/helpers/validators'
+import { isTimelineItemValid } from '@/helpers/validators'
 import { inject, ref } from 'vue'
+import { updateTimelineItemActivitySecondsKey } from '@/keys'
 
 const props = defineProps({
   timelineItem: {
@@ -19,7 +20,7 @@ const props = defineProps({
   }
 })
 
-const updateTimelineItemActivitySeconds = inject('updateTimelineItemActivitySeconds')
+const updateTimelineItemActivitySeconds = inject(updateTimelineItemActivitySecondsKey)
 
 const seconds = ref(props.timelineItem.activitySeconds)
 const isRunning = ref(false)
