@@ -42,7 +42,7 @@ function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
 }
 
 function setActivitySecondsToComplete(activity, secondsToComplete) {
-  activity.secondsToComplete = secondsToComplete
+  activity.secondsToComplete = secondsToComplete || 0
 }
 
 provide(keys.updateTimelineItemActivitySecondsKey, updateTimelineItemActivitySeconds)

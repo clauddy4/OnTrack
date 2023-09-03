@@ -1,12 +1,11 @@
 import {
   HOURS_IN_DAY,
   SECONDS_IN_HOUR,
-  PAGE_TIMELINE,
   SECONDS_IN_MINUTE,
   MINUTES_IN_HOUR,
   MILLISECONDS_IN_SECOND
 } from '@/helpers/constants'
-import { isNull, isPageValid } from '@/helpers/validators'
+import { isNull } from '@/helpers/validators'
 
 export function generateActivities() {
   return ['Coding', 'Reading', 'Training'].map((name, hours) => ({
@@ -63,6 +62,10 @@ export function generatePeriodSelectOptions() {
     value: period * SECONDS_IN_MINUTE,
     label: generatePeriodLabel(period)
   }))
+}
+
+export function currentHour() {
+  return new Date().getHours()
 }
 
 function generatePeriodLabel(period) {

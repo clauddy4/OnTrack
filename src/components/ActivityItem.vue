@@ -35,7 +35,7 @@ const setActivitySecondsToComplete = inject(setActivitySecondsToCompleteKey)
         :selected="activity.secondsToComplete || null"
         placeholder="hh:mm"
         class="font-mono grow"
-        @select="setActivitySecondsToComplete(activity, $event || 0)"
+        @select="setActivitySecondsToComplete(activity, $event)"
       />
 
       <ActivitySecondsToComplete v-if="activity.secondsToComplete" :activity="activity" />
