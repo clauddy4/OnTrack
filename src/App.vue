@@ -5,8 +5,8 @@ import TheTimeline from '@/components/pages/TheTimeline.vue'
 import TheActivities from '@/components/pages/TheActivities.vue'
 import TheProgress from '@/components/pages/TheProgress.vue'
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from '@/helpers/constants'
-import { provide, ref, readonly } from 'vue'
-import { generateTimelineItems, generatePeriodSelectOptions } from '@/helpers/functions'
+import { provide, readonly } from 'vue'
+import { generatePeriodSelectOptions } from '@/helpers/functions'
 import { currentPage, timelineRef } from '@/router'
 import * as keys from '@/keys'
 import {
@@ -16,22 +16,21 @@ import {
   setActivitySecondsToComplete,
   activitySelectOptions
 } from '@/activities'
-
-const timelineItems = ref(generateTimelineItems(activities.value))
-
-function setTimelineItemActivity(timelineItem, activityId) {
-  timelineItem.activityId = activityId
-}
-
-function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
-  timelineItem.activitySeconds += activitySeconds
-}
+import {
+  resetTimelineItemActivities,
+  setTimelineItemActivity,
+  timelineItems,
+  updateTimelineItemActivitySeconds
+} from '@/timeline-items'
 
 provide(keys.updateTimelineItemActivitySecondsKey, updateTimelineItemActivitySeconds)
 provide(keys.setActivitySecondsToCompleteKey, setActivitySecondsToComplete)
 provide(keys.setTimelineItemActivityKey, setTimelineItemActivity)
 provide(keys.createActivityKey, createActivity)
-provide(keys.deleteActivityKey, deleteActivity)
+provide(keys.deleteActivityKey, (activity) => {
+  resetTimelineItemActivities(activity)
+  deleteActivity(activity)
+})
 provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions()))
 provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions))
 provide(keys.timelineItemsKey, readonly(timelineItems))

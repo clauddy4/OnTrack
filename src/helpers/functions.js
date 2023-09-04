@@ -24,14 +24,6 @@ export function getTotalActivitySeconds(activity, timelineItems) {
     )
 }
 
-export function generateTimelineItems(activities) {
-  return [...Array(HOURS_IN_DAY).keys()].map((hour) => ({
-    hour,
-    activityId: hour % 4 === 0 ? null : activities[hour % 2].id,
-    activitySeconds: hour % 4 === 0 ? 0 : (15 * SECONDS_IN_MINUTE * hour) % SECONDS_IN_HOUR
-  }))
-}
-
 export function id() {
   return Date.now().toString(36) + Math.random().toString(36).substring(2)
 }
