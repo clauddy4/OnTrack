@@ -5,33 +5,19 @@ import TheTimeline from '@/components/pages/TheTimeline.vue'
 import TheActivities from '@/components/pages/TheActivities.vue'
 import TheProgress from '@/components/pages/TheProgress.vue'
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from '@/helpers/constants'
-import { computed, provide, ref, readonly } from 'vue'
-import {
-  generateTimelineItems,
-  generateActivitySelectOptions,
-  generateActivities,
-  generatePeriodSelectOptions
-} from '@/helpers/functions'
+import { provide, ref, readonly } from 'vue'
+import { generateTimelineItems, generatePeriodSelectOptions } from '@/helpers/functions'
 import { currentPage, timelineRef } from '@/router'
 import * as keys from '@/keys'
+import {
+  activities,
+  createActivity,
+  deleteActivity,
+  setActivitySecondsToComplete,
+  activitySelectOptions
+} from '@/activities'
 
-const activities = ref(generateActivities())
 const timelineItems = ref(generateTimelineItems(activities.value))
-const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
-
-function deleteActivity(activity) {
-  timelineItems.value.forEach((timelineItem) => {
-    if (timelineItem.activityId === activity.id) {
-      timelineItem.activityId = null
-      timelineItem.activitySeconds = 0
-    }
-  })
-  activities.value.splice(activities.value.indexOf(activity), 1)
-}
-
-function createActivity(activity) {
-  activities.value.push(activity)
-}
 
 function setTimelineItemActivity(timelineItem, activityId) {
   timelineItem.activityId = activityId
@@ -41,18 +27,14 @@ function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
   timelineItem.activitySeconds += activitySeconds
 }
 
-function setActivitySecondsToComplete(activity, secondsToComplete) {
-  activity.secondsToComplete = secondsToComplete || 0
-}
-
 provide(keys.updateTimelineItemActivitySecondsKey, updateTimelineItemActivitySeconds)
 provide(keys.setActivitySecondsToCompleteKey, setActivitySecondsToComplete)
 provide(keys.setTimelineItemActivityKey, setTimelineItemActivity)
 provide(keys.createActivityKey, createActivity)
 provide(keys.deleteActivityKey, deleteActivity)
 provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions()))
-provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions.value))
-provide(keys.timelineItemsKey, readonly(timelineItems.value))
+provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions))
+provide(keys.timelineItemsKey, readonly(timelineItems))
 </script>
 
 <template>
