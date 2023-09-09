@@ -5,7 +5,7 @@ import BaseSelect from '@/components/ui/BaseSelect.vue'
 import { isActivityValid } from '@/helpers/validators'
 import { BUTTON_TYPE_DANGER, PERIOD_SELECT_OPTIONS } from '@/helpers/constants'
 import ActivitySecondsToComplete from '@/components/ActivitySecondsToComplete.vue'
-import { deleteActivity, setActivitySecondsToComplete } from '@/activities'
+import { deleteActivity, updateActivity } from '@/activities'
 import { resetTimelineItemActivities } from '@/timeline-items'
 
 defineProps({
@@ -36,7 +36,7 @@ function deleteAndResetActivity(activity) {
         :selected="activity.secondsToComplete || null"
         placeholder="hh:mm"
         class="font-mono grow"
-        @select="setActivitySecondsToComplete(activity, $event)"
+        @select="updateActivity(activity, { secondsToComplete: $event || 0 })"
       />
 
       <ActivitySecondsToComplete v-if="activity.secondsToComplete" :activity="activity" />
