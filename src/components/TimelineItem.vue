@@ -15,7 +15,7 @@ defineProps({
 })
 
 const emit = defineEmits({
-  scrollToHour: isUndefined()
+  scrollToHour: isUndefined
 })
 </script>
 
