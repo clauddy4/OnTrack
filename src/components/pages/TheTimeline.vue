@@ -5,7 +5,7 @@ import {
   timelineItemRefs,
   scrollToCurrentHour,
   scrollToHour
-} from '@/timeline-items'
+} from '@/helpers/timeline-items'
 import { onActivated } from 'vue'
 
 onActivated(scrollToCurrentHour)

@@ -9,8 +9,9 @@ import {
 import BaseButton from '@/components/ui/BaseButton.vue'
 import { isTimelineItemValid } from '@/helpers/validators'
 import { ref, watch } from 'vue'
-import { updateTimelineItem } from '@/timeline-items'
+import { updateTimelineItem } from '@/helpers/timeline-items'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
+import { ICON_ARROW_PATH, ICON_PAUSE, ICON_PLAY } from '@/helpers/icons'
 
 const props = defineProps({
   timelineItem: {
@@ -57,16 +58,16 @@ function reset() {
 <template>
   <div class="flex w-full gap-2">
     <BaseButton :type="BUTTON_TYPE_DANGER" :disabled="!seconds" @click="reset">
-      <BaseIcon name="ArrowPath" class="h-8" />
+      <BaseIcon :name="ICON_ARROW_PATH" />
     </BaseButton>
     <div class="flex flex-grow items-center rounded bg-gray-100 px-2 font-mono text-3xl">
       {{ formatSeconds(seconds) }}
     </div>
     <BaseButton v-if="isRunning" :type="BUTTON_TYPE_WARNING" @click="stop">
-      <BaseIcon name="Pause" class="h-8" />
+      <BaseIcon :name="ICON_PAUSE" />
     </BaseButton>
     <BaseButton v-else :disabled="isStartButtonDisabled" :type="BUTTON_TYPE_SUCCESS" @click="start">
-      <BaseIcon name="Play" class="h-8" />
+      <BaseIcon :name="ICON_PLAY" />
     </BaseButton>
   </div>
 </template>

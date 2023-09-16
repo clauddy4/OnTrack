@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { activities } from '@/activities'
+import { activities } from '@/helpers/activities'
 import {
   HOURS_IN_DAY,
   MIDNIGHT_HOUR,

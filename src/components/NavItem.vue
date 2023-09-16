@@ -1,5 +1,5 @@
 <script setup>
-import { navigate, currentPage } from '@/router'
+import { navigate, currentPage } from '@/router/router'
 import { isNavItemValid } from '@/helpers/validators'
 import { computed } from 'vue'
 import BaseIcon from '@/components/ui/BaseIcon.vue'

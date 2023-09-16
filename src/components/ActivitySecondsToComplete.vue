@@ -2,7 +2,7 @@
 import { formatSeconds } from '@/helpers/functions'
 import { isActivityValid } from '@/helpers/validators'
 import { computed } from 'vue'
-import { getTotalActivitySeconds } from '@/timeline-items'
+import { getTotalActivitySeconds } from '@/helpers/timeline-items'
 
 const props = defineProps({
   activity: {

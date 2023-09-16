@@ -3,8 +3,8 @@ import BaseSelect from '@/components/ui/BaseSelect.vue'
 import { isTimelineItemValid, isUndefined } from '@/helpers/validators'
 import TimelineHour from '@/components/TimelineHour.vue'
 import TimelineStopwatch from '@/components/TimelineStopwatch.vue'
-import { activitySelectOptions } from '@/activities'
-import { updateTimelineItem } from '@/timeline-items'
+import { activitySelectOptions } from '@/helpers/activities'
+import { updateTimelineItem } from '@/helpers/timeline-items'
 
 defineProps({
   timelineItem: {

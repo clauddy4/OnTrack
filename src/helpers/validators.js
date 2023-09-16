@@ -1,4 +1,5 @@
 import { BUTTON_TYPES, HOURS_IN_DAY, MIDNIGHT_HOUR, NAV_ITEMS } from '@/helpers/constants'
+import { ICONS } from '@/helpers/icons'
 
 export function isPageValid(page) {
   return NAV_ITEMS.some((navItem) => navItem.page === page)
@@ -61,7 +62,11 @@ export function isNumber(value) {
   return typeof value === 'number'
 }
 
-function isNotEmptyString(value) {
+export function isIconValid(icon) {
+  return Object.keys(ICONS).includes(icon)
+}
+
+export function isNotEmptyString(value) {
   return isString(value) && value.length > 0
 }
 

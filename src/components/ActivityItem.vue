@@ -4,9 +4,10 @@ import BaseSelect from '@/components/ui/BaseSelect.vue'
 import { isActivityValid } from '@/helpers/validators'
 import { BUTTON_TYPE_DANGER, PERIOD_SELECT_OPTIONS } from '@/helpers/constants'
 import ActivitySecondsToComplete from '@/components/ActivitySecondsToComplete.vue'
-import { deleteActivity, updateActivity } from '@/activities'
-import { resetTimelineItemActivities } from '@/timeline-items'
+import { deleteActivity, updateActivity } from '@/helpers/activities'
+import { resetTimelineItemActivities } from '@/helpers/timeline-items'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
+import { ICON_TRASH } from '@/helpers/icons'
 
 defineProps({
   activity: {
@@ -26,7 +27,7 @@ function deleteAndResetActivity(activity) {
   <li class="flex flex-col gap-2 p-4">
     <div class="flex items-center gap-2">
       <BaseButton :type="BUTTON_TYPE_DANGER" @click="deleteAndResetActivity(activity)">
-        <BaseIcon name="Trash" class="h-8" />
+        <BaseIcon :name="ICON_TRASH" />
       </BaseButton>
       <span class="truncate text-xl">{{ activity.name }}</span>
     </div>
