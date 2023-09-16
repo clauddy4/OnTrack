@@ -1,20 +1,20 @@
 <script setup>
-import { navigate, currentPage } from '@/router/router'
-import { isNavItemValid } from '@/helpers/validators'
 import { computed } from 'vue'
-import BaseIcon from '@/components/ui/BaseIcon.vue'
+import { isNavItemValid } from '../validators'
+import { currentPage, navigate } from '../router'
+import BaseIcon from './BaseIcon.vue'
 
 const props = defineProps({
   navItem: {
-    type: Object,
     required: true,
+    type: Object,
     validator: isNavItemValid
   }
 })
 
 const classes = computed(() => [
   'flex flex-col items-center p-2 text-xs capitalize',
-  { 'bg-gray-200 pointer-events-none': props.navItem.page === currentPage.value }
+  { 'pointer-events-none bg-gray-200': props.navItem.page === currentPage.value }
 ])
 </script>
 

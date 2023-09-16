@@ -1,6 +1,6 @@
 <script setup>
-import { ICONS } from '@/helpers/icons'
-import { isIconValid, isNotEmptyString } from '@/helpers/validators'
+import { ICONS } from '../icons'
+import { isIconValid, isNotEmptyString } from '../validators'
 
 defineProps({
   name: {
@@ -9,8 +9,8 @@ defineProps({
     validator: isIconValid
   },
   classes: {
-    type: String,
     default: 'h-8',
+    type: String,
     validator: isNotEmptyString
   }
 })

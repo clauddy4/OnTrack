@@ -1,34 +1,37 @@
 <script setup>
-import BaseButton from '@/components/ui/BaseButton.vue'
 import { ref, nextTick } from 'vue'
-import { id } from '@/helpers/functions'
-import { createActivity } from '@/helpers/activities'
-import BaseIcon from '@/components/ui/BaseIcon.vue'
-import { ICON_PLUS } from '@/helpers/icons'
+import { ICON_PLUS } from '../icons'
+import { id } from '../functions'
+import { createActivity } from '../activities'
+import BaseButton from './BaseButton.vue'
+import BaseIcon from './BaseIcon.vue'
+
+const name = ref('')
 
 async function submit() {
   createActivity({
     id: id(),
-    name: activityName.value,
+    name: name.value,
     secondsToComplete: 0
   })
-  activityName.value = ''
+
+  name.value = ''
+
   await nextTick()
+
   window.scrollTo(0, document.body.scrollHeight)
 }
-
-const activityName = ref('')
 </script>
 
 <template>
-  <form @submit.prevent="submit" class="sticky flex gap-2 border-t bg-white p-4 bottom-[57px]">
+  <form @submit.prevent="submit" class="sticky bottom-[57px] flex gap-2 border-t bg-white p-4">
     <input
-      v-model="activityName"
       type="text"
-      placeholder="Activity name"
+      v-model="name"
       class="w-full rounded border px-4 text-xl"
+      placeholder="Activity name"
     />
-    <BaseButton :disabled="activityName.trim() === ''">
+    <BaseButton :disabled="name.trim() === ''">
       <BaseIcon :name="ICON_PLUS" />
     </BaseButton>
   </form>

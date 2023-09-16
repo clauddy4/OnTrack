@@ -1,21 +1,22 @@
 <script setup>
-import BaseButton from '@/components/ui/BaseButton.vue'
-import { isSelectValueValid, isUndefinedOrNull, validateSelectOptions } from '@/helpers/validators'
 import { computed } from 'vue'
-import { BUTTON_TYPE_NEUTRAL } from '@/helpers/constants'
-import { normalizeSelectValue } from '@/helpers/functions'
-import BaseIcon from '@/components/ui/BaseIcon.vue'
-import { ICON_X_MARK } from '@/helpers/icons'
+import { BUTTON_TYPE_NEUTRAL } from '../constants'
+import { ICON_X_MARK } from '../icons'
+import { normalizeSelectValue } from '../functions'
+import { validateSelectOptions, isSelectValueValid, isUndefinedOrNull } from '../validators'
+import BaseButton from './BaseButton.vue'
+import BaseIcon from './BaseIcon.vue'
+
 const props = defineProps({
   selected: [String, Number],
-  options: {
-    type: Array,
-    required: true,
-    validator: validateSelectOptions
-  },
   placeholder: {
-    type: String,
-    required: true
+    required: true,
+    type: String
+  },
+  options: {
+    required: true,
+    type: Array,
+    validator: validateSelectOptions
   }
 })
 
@@ -32,14 +33,16 @@ function select(value) {
 
 <template>
   <div class="flex gap-2">
-    <BaseButton @click="select(null)" :type="BUTTON_TYPE_NEUTRAL">
+    <BaseButton :type="BUTTON_TYPE_NEUTRAL" @click="select(null)">
       <BaseIcon :name="ICON_X_MARK" />
     </BaseButton>
     <select
-      @change="select($event.target.value)"
       class="w-full truncate rounded bg-gray-100 px-2 py-1 text-2xl"
+      @change="select($event.target.value)"
     >
-      <option :selected="isNotSelected" disabled value="">{{ placeholder }}</option>
+      <option :selected="isNotSelected" disabled value="">
+        {{ placeholder }}
+      </option>
       <option
         v-for="{ value, label } in options"
         :key="value"

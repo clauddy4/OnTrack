@@ -1,13 +1,13 @@
 <script setup>
-import BaseButton from '@/components/ui/BaseButton.vue'
-import BaseSelect from '@/components/ui/BaseSelect.vue'
-import { isActivityValid } from '@/helpers/validators'
-import { BUTTON_TYPE_DANGER, PERIOD_SELECT_OPTIONS } from '@/helpers/constants'
-import ActivitySecondsToComplete from '@/components/ActivitySecondsToComplete.vue'
-import { deleteActivity, updateActivity } from '@/helpers/activities'
-import { resetTimelineItemActivities } from '@/helpers/timeline-items'
-import BaseIcon from '@/components/ui/BaseIcon.vue'
-import { ICON_TRASH } from '@/helpers/icons'
+import { BUTTON_TYPE_DANGER, PERIOD_SELECT_OPTIONS } from '../constants'
+import { ICON_TRASH } from '../icons'
+import { isActivityValid } from '../validators'
+import { updateActivity, deleteActivity } from '../activities'
+import { resetTimelineItemActivities } from '../timeline-items'
+import BaseButton from './BaseButton.vue'
+import BaseIcon from './BaseIcon.vue'
+import BaseSelect from './BaseSelect.vue'
+import ActivitySecondsToComplete from './ActivitySecondsToComplete.vue'
 
 defineProps({
   activity: {
@@ -33,13 +33,12 @@ function deleteAndResetActivity(activity) {
     </div>
     <div class="flex gap-2">
       <BaseSelect
+        class="grow font-mono"
+        placeholder="hh:mm"
         :options="PERIOD_SELECT_OPTIONS"
         :selected="activity.secondsToComplete || null"
-        placeholder="hh:mm"
-        class="font-mono grow"
         @select="updateActivity(activity, { secondsToComplete: $event || 0 })"
       />
-
       <ActivitySecondsToComplete v-if="activity.secondsToComplete" :activity="activity" />
     </div>
   </li>
