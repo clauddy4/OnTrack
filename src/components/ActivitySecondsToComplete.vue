@@ -1,8 +1,8 @@
 <script setup>
 import { computed } from 'vue'
-import { formatSeconds } from '../functions'
-import { isActivityValid } from '../validators'
-import { getTotalActivitySeconds } from '../timeline-items'
+import { formatSeconds } from '@/functions'
+import { isActivityValid } from '@/validators'
+import { getTotalActivitySeconds } from '@/timeline-items'
 
 const props = defineProps({
   activity: {
@@ -13,8 +13,7 @@ const props = defineProps({
 })
 
 const classes = computed(
-  () =>
-    `flex items-center rounded bg-purple-100 px-2 font-mono text-xl text-purple-600 ${colorClasses.value}`
+  () => `flex items-center rounded px-2 font-mono text-xl ${colorClasses.value}`
 )
 
 const colorClasses = computed(() =>

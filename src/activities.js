@@ -1,5 +1,5 @@
 import { ref, computed } from 'vue'
-import { SECONDS_IN_HOUR, HUNDRED_PERCENT } from './constants'
+import { HUNDRED_PERCENT } from './constants'
 import { id } from './functions'
 import { getTotalActivitySeconds } from './timeline-items'
 

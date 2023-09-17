@@ -37,10 +37,6 @@ export function isActivityValid({ id, name, secondsToComplete }) {
   return [isNotEmptyString(id), isNotEmptyString(name), isNumber(secondsToComplete)].every(Boolean)
 }
 
-export function isNotEmptyString(value) {
-  return isString(value) && value.length > 0
-}
-
 export function isHourValid(hour) {
   return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOURS_IN_DAY - 1)
 }
@@ -83,4 +79,8 @@ function isBetween(value, start, end) {
 
 function isString(value) {
   return typeof value === 'string'
+}
+
+function isNotEmptyString(value) {
+  return isString(value) && value.length > 0
 }
