@@ -22,6 +22,10 @@ export function formatSeconds(seconds) {
   return utc.substring(utc.indexOf(':') - 2, utc.indexOf(':') + 6)
 }
 
+export function formatSecondsWithSign(seconds) {
+  return `${seconds >= 0 ? '+' : '-'}${formatSeconds(seconds)}`
+}
+
 export function normalizeSelectValue(value) {
   return isNull(value) || isNaN(value) ? value : +value
 }
