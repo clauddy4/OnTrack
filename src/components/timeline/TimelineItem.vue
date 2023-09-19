@@ -1,10 +1,10 @@
 <script setup>
-import { isTimelineItemValid } from '@/validators'
-import { updateTimelineItem } from '@/timeline-items'
-import { activitySelectOptions } from '@/activities'
-import BaseSelect from '@/components/BaseSelect.vue'
-import TimelineHour from '@/components/TimelineHour.vue'
-import TimelineStopwatch from '@/components/TimelineStopwatch.vue'
+import { isTimelineItemValid } from '@/helpers/validators'
+import { updateTimelineItem } from '@/helpers/timeline-items'
+import { activitySelectOptions } from '@/helpers/activities'
+import BaseSelect from '@/components/ui/BaseSelect.vue'
+import TimelineHour from '@/components/timeline/TimelineHour.vue'
+import TimelineStopwatch from '@/components/timeline/TimelineStopwatch.vue'
 
 defineProps({
   timelineItem: {
@@ -16,7 +16,7 @@ defineProps({
 </script>
 
 <template>
-  <li class="relative flex flex-col gap-2 border-t border-gray-200 py-10 px-4">
+  <li class="relative flex flex-col gap-2 border-t border-gray-200 px-4 py-10">
     <TimelineHour :hour="timelineItem.hour" />
     <BaseSelect
       placeholder="Rest"

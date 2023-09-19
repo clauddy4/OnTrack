@@ -1,8 +1,8 @@
 <script setup>
 import { computed } from 'vue'
-import { isNavItemValid } from '../validators'
-import { currentPage, navigate } from '../router'
-import BaseIcon from './BaseIcon.vue'
+import { isNavItemValid } from '@/helpers/validators'
+import { currentPage, navigate } from '@/router/router'
+import BaseIcon from '@/components/ui/BaseIcon.vue'
 
 const props = defineProps({
   navItem: {

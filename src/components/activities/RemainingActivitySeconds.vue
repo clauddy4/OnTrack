@@ -1,8 +1,8 @@
 <script setup>
 import { computed } from 'vue'
-import { formatSecondsWithSign } from '@/functions'
-import { isActivityValid } from '@/validators'
-import { getTotalActivitySeconds, timelineItems } from '@/timeline-items'
+import { formatSecondsWithSign } from '@/helpers/functions'
+import { isActivityValid } from '@/helpers/validators'
+import { timelineItems, calculateTrackedActivitySeconds } from '@/helpers/timeline-items'
 
 const props = defineProps({
   activity: {
@@ -19,7 +19,8 @@ const classes = computed(() => [
 
 const remainingSeconds = computed(
   () =>
-    getTotalActivitySeconds(timelineItems.value, props.activity) - props.activity.secondsToComplete
+    calculateTrackedActivitySeconds(timelineItems.value, props.activity) -
+    props.activity.secondsToComplete
 )
 </script>
 

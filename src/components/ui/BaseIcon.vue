@@ -1,6 +1,6 @@
 <script setup>
-import { ICONS } from '@/icons'
-import { isIconValid } from '@/validators'
+import { ICONS } from '@/helpers/icons'
+import { isIconValid } from '@/helpers/validators'
 
 defineProps({
   name: {

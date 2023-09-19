@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 import { HOURS_IN_DAY, MIDNIGHT_HOUR } from './constants'
 import { currentHour } from './functions'
+// import { activities } from './activities'
 
 export const timelineItemRefs = ref([])
 
@@ -14,12 +15,12 @@ export function resetTimelineItemActivities(timelineItems, activity) {
   filterTimelineItemsByActivity(timelineItems, activity).forEach((timelineItem) =>
     updateTimelineItem(timelineItem, {
       activityId: null,
-      activitySeconds: 0
+      activitySeconds: timelineItem.hour === currentHour() ? timelineItem.activitySeconds : 0
     })
   )
 }
 
-export function getTotalActivitySeconds(timelineItems, activity) {
+export function calculateTrackedActivitySeconds(timelineItems, activity) {
   return filterTimelineItemsByActivity(timelineItems, activity)
     .map(({ activitySeconds }) => activitySeconds)
     .reduce((total, seconds) => Math.round(total + seconds), 0)

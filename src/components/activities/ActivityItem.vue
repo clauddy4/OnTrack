@@ -1,13 +1,13 @@
 <script setup>
-import { BUTTON_TYPE_DANGER, PERIOD_SELECT_OPTIONS } from '@/constants'
-import { ICON_TRASH } from '@/icons'
-import { isActivityValid } from '@/validators'
-import { updateActivity, deleteActivity } from '@/activities'
-import { resetTimelineItemActivities, timelineItems } from '@/timeline-items'
-import BaseButton from '@/components/BaseButton.vue'
-import BaseIcon from '@/components/BaseIcon.vue'
-import BaseSelect from '@/components/BaseSelect.vue'
-import RemainingActivitySeconds from '@/components/RemainingActivitySeconds.vue'
+import { BUTTON_TYPE_DANGER, PERIOD_SELECT_OPTIONS } from '@/helpers/constants'
+import { ICON_TRASH } from '@/helpers/icons'
+import { isActivityValid } from '@/helpers/validators'
+import { updateActivity, deleteActivity } from '@/helpers/activities'
+import { timelineItems, resetTimelineItemActivities } from '@/helpers/timeline-items'
+import BaseButton from '../ui/BaseButton.vue'
+import BaseIcon from '../ui/BaseIcon.vue'
+import BaseSelect from '../ui/BaseSelect.vue'
+import RemainingActivitySeconds from './RemainingActivitySeconds.vue'
 
 defineProps({
   activity: {
@@ -18,7 +18,7 @@ defineProps({
 })
 
 function deleteAndResetActivity(activity) {
-  resetTimelineItemActivities(timelineItems, activity)
+  resetTimelineItemActivities(timelineItems.value, activity)
   deleteActivity(activity)
 }
 </script>

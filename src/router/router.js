@@ -1,9 +1,9 @@
 import { ref } from 'vue'
-import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants'
-import { isPageValid } from './validators'
-import TheTimeline from './pages/TheTimeline.vue'
-import TheActivities from './pages/TheActivities.vue'
-import TheProgress from './pages/TheProgress.vue'
+import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from '../helpers/constants'
+import { isPageValid } from '../helpers/validators'
+import TheTimeline from '../components/timeline/TheTimeline.vue'
+import TheActivities from '../components/activities/TheActivities.vue'
+import TheProgress from '../components/progress/TheProgress.vue'
 
 export const routes = {
   [PAGE_TIMELINE]: TheTimeline,

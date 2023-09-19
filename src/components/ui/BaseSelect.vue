@@ -1,9 +1,9 @@
 <script setup>
 import { computed } from 'vue'
-import { BUTTON_TYPE_NEUTRAL } from '../constants'
-import { ICON_X_MARK } from '../icons'
-import { normalizeSelectValue } from '../functions'
-import { validateSelectOptions, isSelectValueValid, isUndefinedOrNull } from '../validators'
+import { BUTTON_TYPE_NEUTRAL } from '@/helpers/constants'
+import { ICON_X_MARK } from '@/helpers/icons'
+import { normalizeSelectValue } from '@/helpers/functions'
+import { validateSelectOptions, isSelectValueValid, isUndefinedOrNull } from '@/helpers/validators'
 import BaseButton from './BaseButton.vue'
 import BaseIcon from './BaseIcon.vue'
 

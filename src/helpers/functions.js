@@ -2,14 +2,18 @@ import {
   MILLISECONDS_IN_SECOND,
   SECONDS_IN_MINUTE,
   MINUTES_IN_HOUR,
-  LOW_PERCENT,
+  HUNDRED_PERCENT,
   MEDIUM_PERCENT,
-  HUNDRED_PERCENT
+  LOW_PERCENT
 } from './constants'
 import { isNull } from './validators'
 
 export function currentHour() {
   return new Date().getHours()
+}
+
+export function formatSecondsWithSign(seconds) {
+  return `${seconds >= 0 ? '+' : '-'}${formatSeconds(seconds)}`
 }
 
 export function formatSeconds(seconds) {
@@ -22,12 +26,16 @@ export function formatSeconds(seconds) {
   return utc.substring(utc.indexOf(':') - 2, utc.indexOf(':') + 6)
 }
 
-export function formatSecondsWithSign(seconds) {
-  return `${seconds >= 0 ? '+' : '-'}${formatSeconds(seconds)}`
-}
-
 export function normalizeSelectValue(value) {
   return isNull(value) || isNaN(value) ? value : +value
+}
+
+export function getProgressColorClass(percentage) {
+  if (percentage < LOW_PERCENT) return 'bg-red-500'
+  if (percentage < MEDIUM_PERCENT) return 'bg-yellow-500'
+  if (percentage < HUNDRED_PERCENT) return 'bg-blue-500'
+
+  return 'bg-green-500'
 }
 
 export function id() {
@@ -43,13 +51,6 @@ export function generatePeriodSelectOptions() {
     value: periodInMinutes * SECONDS_IN_MINUTE,
     label: generatePeriodSelectOptionsLabel(periodInMinutes)
   }))
-}
-
-export function getProgressColorClass(percentage) {
-  if (percentage < LOW_PERCENT) return 'bg-red-500'
-  if (percentage < MEDIUM_PERCENT) return 'bg-yellow-500'
-  if (percentage < HUNDRED_PERCENT) return 'bg-blue-500'
-  return 'bg-green-500'
 }
 
 function generatePeriodSelectOptionsLabel(periodInMinutes) {

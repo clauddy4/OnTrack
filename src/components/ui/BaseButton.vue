@@ -5,7 +5,7 @@ import {
   BUTTON_TYPE_WARNING,
   BUTTON_TYPE_DANGER,
   BUTTON_TYPE_NEUTRAL
-} from '../constants'
+} from '@/helpers/constants'
 
 const typeClasses = {
   [BUTTON_TYPE_PRIMARY]: 'bg-purple-500 enabled:hover:bg-purple-600 text-white',
@@ -17,7 +17,7 @@ const typeClasses = {
 </script>
 
 <script setup>
-import { isButtonTypeValid } from '../validators'
+import { isButtonTypeValid } from '@/helpers/validators'
 
 const props = defineProps({
   type: {
@@ -27,13 +27,14 @@ const props = defineProps({
   }
 })
 
-const classes = `${
+const classes = [
+  'rounded p-3 disabled:cursor-not-allowed disabled:opacity-50',
   typeClasses[props.type]
-} rounded p-3 disabled:cursor-not-allowed disabled:opacity-50`
+]
 </script>
 
 <template>
   <button :class="classes">
-    <slot></slot>
+    <slot />
   </button>
 </template>
